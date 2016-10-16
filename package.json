@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-deezer-player",
+  "version": "1.0.1",
+  "description": "how to use this plugin read in README.md",
+  "cordova": {
+    "id": "com.deezer.cordova.sdk",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/procoders/cordova-deezer-plugin.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "aleksey",
+  "license": "2.0",
+  "bugs": {
+    "url": "https://github.com/procoders/cordova-deezer-plugin/issues"
+  },
+  "homepage": "https://github.com/procoders/cordova-deezer-plugin#readme"
+}
