@@ -31,4 +31,4 @@ var deezerPlayer={
             cordova.exec(null,null,"Deezer","playerControl",[{"offset" : player_position,"index" : 0, "autoplay" : true , "addToQueue" : false, "chengPosition" : player_position}, "chengPosition"])
         },
 
-        };
+};
