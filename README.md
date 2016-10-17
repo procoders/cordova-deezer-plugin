@@ -5,7 +5,7 @@
 1. Copy the contents from `misc/index.js` file to your `index.js` file
 
 2. Then when the device is ready you have to initialize your application copypaste this code
-```sh
+```javascript
 deezerPlayer.myInit(callbackSaccess,callbackError, appId);
 ```
  
@@ -13,7 +13,7 @@ deezerPlayer.myInit(callbackSaccess,callbackError, appId);
 
 3. And then you can use functions to control the player.
 *Exemple on native javascript:*
-```sh
+```javascript
 document.getElementById('btnPlayAlbum').addEventListener('click',function(){deezerPlayer.myPlayAlbum(callbackSaccess,callbackError,albumId)});
 document.getElementById('slider_seek').addEventListener('click',function(){deezerPlayer.onPosition(valX); });
 ```
