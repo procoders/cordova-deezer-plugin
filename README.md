@@ -1,4 +1,6 @@
 
+[![N|Solid](//procoders.tech/art/powered.png)](http://procoders.tech/)
+
 ## For use it plugin: 
 1. Copy the contents from `misc/index.js` file to your `index.js` file
 
@@ -18,4 +20,3 @@ document.getElementById('slider_seek').addEventListener('click',function(){deeze
 * *string*  `albumId` - ID album, *exemple "6575789"*;
 * *int* `valX` - persent of track duration
 
-[![N|Solid]((http://procoders.tech/art/powered.png)](http://procoders.tech/)
