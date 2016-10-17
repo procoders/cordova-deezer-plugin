@@ -1,5 +1,5 @@
 
-[![N|Solid](//procoders.tech/art/powered.png)](http://procoders.tech/)
+[![N|Solid](http://procoders.tech/art/powered.png)](http://procoders.tech/)
 
 ## For use it plugin: 
 1. Copy the contents from `misc/index.js` file to your `index.js` file
