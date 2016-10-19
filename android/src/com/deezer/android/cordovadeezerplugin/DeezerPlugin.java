@@ -33,10 +33,10 @@ public class DeezerPlugin extends CordovaPlugin {
 	private final static String METHOD_NAME_PLAYSMARTRADIO = "playSmartRadio";
 
 
-	private final static String METHOD_SEND_TO_JS_OBJ = "deezercordova.EVENTS";
+	private final static String METHOD_SEND_TO_JS_OBJ = "deezerPlayer.EVENTS";
 	private final static String METHOD_SEND_TO_JS_POSITION_CHANGED = ".on_position";
 	private final static String METHOD_SEND_TO_JS_BUFFER_CHANGED = ".on_buffering";
-	private  final static String METHOD_CHENG_POSITION = "chengPosition";
+	private  final static String METHOD_CHANGE_POSITION = "changePosition";
 
 	private CordovaInterface mInterface;
 	private CordovaWebView mWebView;
@@ -101,7 +101,6 @@ public class DeezerPlugin extends CordovaPlugin {
 			final boolean autoPlay = json.optBoolean("autoplay", true);
 			final boolean addToQueue = json.optBoolean("queue", false);
 
-			final  long idxPos = json.optLong("chengPosition",0);
 
 			if (method.equals(METHOD_NAME_PLAYTRACKS)) {
 				String ids = json.optString("trackList", null);
@@ -137,8 +136,10 @@ public class DeezerPlugin extends CordovaPlugin {
 					mListener.onPlayArtistRadio(callbackContext, id, index,
 							offset, autoPlay, addToQueue);
 				}
-			} else if(method.equals(METHOD_CHENG_POSITION)){
-				mListener.onChengPosition(idxPos);
+			} else if(method.equals(METHOD_CHANGE_POSITION)){
+				final  long idxPos = json.optLong("changePosition",0);
+
+				mListener.setChangePosition(idxPos);
 			}
 		} else {
 			// method not found !
@@ -184,7 +185,7 @@ public class DeezerPlugin extends CordovaPlugin {
 		array.put(index);
 
 		try {
-			array.put(track );//was .toJson()
+			array.put(track.getTitle() );//was .toJson()
 			sendUpdate(".on_current_track", new Object[] {
 					array
 			});
@@ -209,9 +210,14 @@ public class DeezerPlugin extends CordovaPlugin {
 		jsCommand.append(")");
 
 		Log.d("DeezerPlugin", "sendUpdate jsCommand : " + jsCommand.toString());
-		//mWebView.loadUrl(jsCommand.toString());
 
+		mWebView.getView().post(new Runnable(){
+			public void run(){
 
+					mWebView.loadUrl(jsCommand.toString());
+
+			}
+		});
 
 	}
 }
