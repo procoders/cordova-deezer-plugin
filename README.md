@@ -1,22 +1,42 @@
-
 [![N|Solid](http://procoders.tech/art/powered.png)](http://procoders.tech/)
 
-## For use it plugin: 
-1. Copy the contents from `misc/index.js` file to your `index.js` file
-
-2. Then when the device is ready you have to initialize your application copypaste this code
+## Hooks
+You must init the application, use this in your *index.js* after deviceready :
 ```javascript
-deezerPlayer.myInit(callbackSaccess,callbackError, appId);
+deezerPlayer.init(callbackSaccess,callbackError,applicationId);
 ```
- 
-*string* `appId` - your Application ID 
+`applicationId` - ID in Deezer service
 
-3. And then you can use functions to control the player.
-*Exemple on native javascript:*
+For user authentication:
 ```javascript
-document.getElementById('btnPlayAlbum').addEventListener('click',function(){deezerPlayer.myPlayAlbum(callbackSaccess,callbackError,albumId)});
-document.getElementById('slider_seek').addEventListener('click',function(){deezerPlayer.onPosition(valX); });
+deezerPlayer.login(callbackSaccess,callbackError,[username]);
 ```
-* *string*  `albumId` - ID album, *exemple "6575789"*;
-* *int* `valX` - persent of track duration
 
+### Methods *(namespase `deezerPlayer`)*:
+```javasript
+playAlbum(callbackSaccess,callbackError,albumId);
+playPlaylist(callbackSaccess, callbackError,playListId);
+playRadio : function(callbackSaccess, callbackError,radioId);
+pause(callbackSaccess, callbackError);
+play(callbackSaccess, callbackError);
+prev(callbackSaccess, callbackError);
+next(callbackSaccess, callbackError);
+playTrack(callbackSaccess, callbackError,trackId):
+seek(player_position);//player_position - value between 0-100%
+setVolume(val1,val2);//val1,val2 - the volume for the left and right channel (between 0-100%)
+```
+
+### Events *(namespace `deezerPlayer.Events`)*
+```javascript
+on_position : function(args){},//args[0] - position, args[1] - duration
+on_buffering : function (args){},//(args[0] * 100) + " %";
+on_current_track : function(arg){},//arg[1] - Title of track
+on_player_play : function(){},
+on_track_ended : function(){},
+on_pause : function(){},
+on_change_volume : function(args){}//args[0] - the volume for the left channel (between 0 and 100%), args[1] -  the volume for the right channel (between 0 and 100%)
+```
+Exemle for subscribe:
+```javascript
+deezerPlayer.Events.on_position = function(args){....}
+```
