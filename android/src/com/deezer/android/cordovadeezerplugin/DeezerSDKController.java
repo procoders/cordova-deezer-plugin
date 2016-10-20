@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.util.List;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,6 +89,22 @@ public class DeezerSDKController implements DeezerJSListener {
 
 
 	}
+
+	@Override
+	public boolean setVolume(float val1, float val2) {
+		if(mPlayerWrapper.setStereoVolume(val1,val2)){
+			JSONArray arr = new JSONArray();
+			arr.put((int)val1);
+			arr.put((int)val2);
+					mPlugin.sendUpdate(".on_change_volume",new Object[]{arr});
+			LOG.d(LOG_TAG,arr.toString());
+			return  true;
+		}else {
+			LOG.e(LOG_TAG,"ERORROR SET VOLUME");
+			return false;
+		}
+	}
+
 	@Override
 	public void onPlayTracks(final CallbackContext callbackContext, final String ids,
 							 final int index, final int offset, final boolean autoPlay, final boolean addToQueue) {
@@ -108,10 +125,10 @@ public class DeezerSDKController implements DeezerJSListener {
 			mPlayerWrapper
 					.addOnPlayerProgressListener(new PlayerProgressListener());
 			mPlayerWrapper.addOnBufferProgressListener(new PlayerBufferProgressListener());
-			//124603270
+
 			// play the given track id
 			long trackId = Long.valueOf(ids);
-			((TrackPlayer) mPlayerWrapper).playTrack(trackId);//
+			((TrackPlayer) mPlayerWrapper).playTrack(trackId);
 
 		}
 		catch (OAuthException e) {

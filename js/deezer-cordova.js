@@ -1,3 +1,4 @@
+cordova.define("com.deezer.cordova.sdk.deezer", function(require, exports, module) {
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -21,17 +22,14 @@
 
 console.log("Loading deezer-cordova.js");
 
+
 var exec = require('cordova/exec');
 
 
+});
 
-/**
- * Provides access to the vibration mechanism on the device.
- */
-
-module.exports = {
-
-       init:function(callbackSaccess,callbackError, appId){
+var deezerPlayer={
+        init:function(callbackSaccess,callbackError, appId){
          cordova.exec(callbackSaccess, callbackError, "Deezer", "init", [appId])
          },
         playAlbum : function(callbackSaccess,callbackError,albumId){
@@ -62,16 +60,32 @@ module.exports = {
         seek : function(player_position){
             cordova.exec(null,null,"Deezer","playerControl",[{"offset" : player_position,"index" : 0, "autoplay" : true , "addToQueue" : false, "changePosition" : player_position}, "changePosition"])
         },
-        EVENTS : {
-            on_position : function(args){ 
-                //args[0] - position, args[1] - duration
-                },
-            on_buffering : function (args){ },
-            on_current_track : function(arg){
-                      //arg[1] - track title
-            },
-            on_player_play : function(){ },
-            on_track_ended : function(){ },
-            on_pause : function(){}
+        setVolume : function(val1,val2){
+            cordova.exec(null,null,"Deezer","playerControl",[{"setVolume1" : val1, "setVolume2" : val2},"setVolume"]);
         },
-};
+        Events : {
+            on_position : function(args){
+             //args[0] - position, args[1] - duration
+             },
+            on_buffering : function (args){
+            //(args[0] * 100) + " %";
+            },
+            on_current_track : function(arg){
+             //arg[1] - Title of track
+            },
+            on_player_play : function(){},
+            on_track_ended : function(){},
+            on_pause : function(){},
+            on_change_volume : function(args){
+            //args[0] - left value, args[1] - right value
+            }
+        },
+
+ };
+
+module.exports = deezerPlayer;
+
+
+
+
+

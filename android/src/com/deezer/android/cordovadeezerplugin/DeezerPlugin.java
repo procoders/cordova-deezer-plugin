@@ -33,10 +33,11 @@ public class DeezerPlugin extends CordovaPlugin {
 	private final static String METHOD_NAME_PLAYSMARTRADIO = "playSmartRadio";
 
 
-	private final static String METHOD_SEND_TO_JS_OBJ = "deezerPlayer.EVENTS";
+	private final static String METHOD_SEND_TO_JS_OBJ = "deezerPlayer.Events";
 	private final static String METHOD_SEND_TO_JS_POSITION_CHANGED = ".on_position";
 	private final static String METHOD_SEND_TO_JS_BUFFER_CHANGED = ".on_buffering";
 	private  final static String METHOD_CHANGE_POSITION = "changePosition";
+	private  final static String METHOD_SET_VOLUME = "setVolume";
 
 	private CordovaInterface mInterface;
 	private CordovaWebView mWebView;
@@ -140,6 +141,10 @@ public class DeezerPlugin extends CordovaPlugin {
 				final  long idxPos = json.optLong("changePosition",0);
 
 				mListener.setChangePosition(idxPos);
+			}else if(method.equals(METHOD_SET_VOLUME)){
+				final  float val1 = json.optInt("setVolume1",0);
+				final  float val2 = json.optInt("setVolume2",0);
+				mListener.setVolume(val1,val2);
 			}
 		} else {
 			// method not found !
