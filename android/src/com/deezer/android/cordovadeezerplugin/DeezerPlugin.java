@@ -142,8 +142,8 @@ public class DeezerPlugin extends CordovaPlugin {
 
 				mListener.setChangePosition(idxPos);
 			}else if(method.equals(METHOD_SET_VOLUME)){
-				final  float val1 = json.optInt("setVolume1",0);
-				final  float val2 = json.optInt("setVolume2",0);
+				final  float val1 = (float)json.optDouble("setVolume1");
+				final  float val2 =(float)json.optDouble("setVolume2");
 				mListener.setVolume(val1,val2);
 			}
 		} else {

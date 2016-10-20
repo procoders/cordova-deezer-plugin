@@ -32,6 +32,9 @@ var deezerPlayer={
         init:function(callbackSaccess,callbackError, appId){
          cordova.exec(callbackSaccess, callbackError, "Deezer", "init", [appId])
          },
+         login : function(callbackSaccess,callbackError){
+                   cordova.exec(null, null, "Deezer", "login", []);
+        },
         playAlbum : function(callbackSaccess,callbackError,albumId){
                 cordova.exec(callbackSaccess, callbackError, "Deezer", "playerControl", [{"offset" : 0, "index" : 0, "autoplay" : true , "addToQueue" : false, "album_id" : albumId}, "playAlbum"])
          },
@@ -40,7 +43,7 @@ var deezerPlayer={
         },
         playRadio : function(callbackSaccess, callbackError,radioId){
             cordova.exec(callbackSaccess, callbackError,"Deezer", "playerControl",
-            [{"offset" : 0, "index" : 0, "autoplay" : true, "addToQueue" : false, "radio_id" : "28"}, "playRadio"]);
+            [{"offset" : 0, "index" : 0, "autoplay" : true, "addToQueue" : false, "radio_id" : radioId}, "playRadio"]);
         },
        pause : function(callbackSaccess, callbackError){
              cordova.exec(callbackSaccess, callbackError, "Deezer", "doAction", [{"command" : "pause"}]);
@@ -77,7 +80,7 @@ var deezerPlayer={
             on_track_ended : function(){},
             on_pause : function(){},
             on_change_volume : function(args){
-            //args[0] - left value, args[1] - right value
+            //args[0] - the volume for the left channel (between 0.0 and 1.0), args[1] -  the volume for the right channel (between 0.0 and 1.0)
             }
         },
 
