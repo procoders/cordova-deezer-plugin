@@ -16,7 +16,7 @@ deezerPlayer.login(callbackSaccess,callbackError,[username]);
 ```javasript
 playAlbum(callbackSaccess,callbackError,albumId);
 playPlaylist(callbackSaccess, callbackError,playListId);
-playRadio : function(callbackSaccess, callbackError,radioId);
+playRadio(callbackSaccess, callbackError,radioId);
 pause(callbackSaccess, callbackError);
 play(callbackSaccess, callbackError);
 prev(callbackSaccess, callbackError);
