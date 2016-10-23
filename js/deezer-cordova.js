@@ -32,8 +32,8 @@ var deezerPlayer={
         init:function(callbackSaccess,callbackError, appId){
          cordova.exec(callbackSaccess, callbackError, "Deezer", "init", [appId])
          },
-         login : function(callbackSaccess,callbackError,args){
-                   cordova.exec(callbackSaccess,callbackError, "Deezer", "login", [args]);
+         login : function(callbackSaccess,callbackError){
+                   cordova.exec(callbackSaccess,callbackError, "Deezer", "login", []);
         },
         playAlbum : function(callbackSaccess,callbackError,albumId){
                 cordova.exec(callbackSaccess, callbackError, "Deezer", "playerControl", [{"offset" : 0, "index" : 0, "autoplay" : true , "addToQueue" : false, "album_id" : albumId}, "playAlbum"])
