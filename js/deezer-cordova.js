@@ -1,4 +1,3 @@
-cordova.define("com.deezer.cordova.sdk.deezer", function(require, exports, module) {
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,15 +18,6 @@ cordova.define("com.deezer.cordova.sdk.deezer", function(require, exports, modul
  * under the License.
  *
 */
-
-console.log("Loading deezer-cordova.js");
-
-
-var exec = require('cordova/exec');
-
-
-});
-
 var deezerPlayer={
         init:function(callbackSaccess,callbackError, appId){
          cordova.exec(callbackSaccess, callbackError, "Deezer", "init", [appId])
