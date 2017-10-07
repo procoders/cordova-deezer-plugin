@@ -1,3 +1,11 @@
+# Deprecated
+
+Actual plugin is avaiable at
+https://github.com/procoders/cordova-plugin-deezer/
+
+
+
+
 [![N|Solid](http://procoders.tech/art/powered.png)](http://procoders.tech/)
 
 ## Hooks
